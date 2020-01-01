@@ -1,5 +1,6 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
+
 #include "../imgui/imgui.h"
 #include "../imgui/imgui_impl_glfw.h"
 #include "../imgui/imgui_impl_opengl3.h"
@@ -11,6 +12,13 @@
 
 constexpr s32 width = 1920;
 constexpr s32 height = 1080;
+
+void ErrorCallback(
+    GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const char *message,
+    const void *userParam)
+{
+  printf("%s\n", message);
+}
 
 Window *InitGL()
 {
@@ -57,6 +65,8 @@ int main(int argc, char **argv)
   Window *window = InitGL();
   // InitIMGUI(window);
   printf("%s\n", glGetString(GL_VERSION));
+  glDebugMessageCallback(ErrorCallback, nullptr);
+  glEnable(GL_DEBUG_OUTPUT);
   f64 lastTime = glfwGetTime();
 
   while (!window->ShouldClose())
