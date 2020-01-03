@@ -35,30 +35,11 @@ if (WIN32)
 	#set(CMAKE_CXX_FLAGS "-std=c++17 -g -Wall -Wextra -pedantic -D_DEBUG")
 #    #add_definitions(-DGLEW_STATIC=1)
     target_link_libraries(
-        schoolEngine
-        ${OPENGL_LIBRARY}#OpenGL
-        #D:/libraries/glew-2.1.0/lib/Release/x64/libglew32.a
-        #D:/libraries/glew-2.1.0/lib/Release/x64/libglew32.dll.a
-        #D:/libraries/glew-2.1.0/lib/Release/x64/glew32s.lib
+       DView 
+        ${OPENGL_LIBRARY}
         D:/libraries/glew-2.1.0/lib/Release/x64/glew32.lib
-        #D:/libraries/glew-2.1.0/lib/Release/x64/glew32.dll
         D:/libraries/glfw-3.3.bin.WIN64/lib-vc2019/glfw3.lib
-        #D:/libraries/glfw-3.2.1.bin.WIN64/lib-mingw-w64/libglfw3.a
-    )
-elseif(APPLE)
-	set(CMAKE_CXX_FLAGS "-std=c++17 -g -Wall -Wextra -pedantic -D_DEBUG")
-    INCLUDE_DIRECTORIES ( /System/Library/Frameworks )
-    FIND_LIBRARY(COCOA_LIBRARY Cocoa)
-    FIND_LIBRARY(GLEW_LIBRARY GLEW)
-    FIND_LIBRARY(GLFW_LIBRARY glfw)
-    FIND_LIBRARY(OpenGL_LIBRARY OpenGL )
-    MARK_AS_ADVANCED (COCOA_LIBRARY
-                     GLEW_LIBRARY
-                     GLFW_LIBRARY
-                     OpenGL_LIBRARY)
-    SET(EXTRA_LIBS ${COCOA_LIBRARY} ${GLEW_LIBRARY} ${GLFW_LIBRARY} ${OpenGL_LIBRARY})
-    target_link_libraries(schoolEngine ${EXTRA_LIBS})
-    #endif(APPLE)
+        )
 else()
 message("not windows hit me")
 	set(CMAKE_CXX_FLAGS "-std=c++17 -g -Wall -Wextra -pedantic -D_DEBUG")
@@ -69,20 +50,6 @@ message("not windows hit me")
         GLEW
         glfw
 	)
-#set(CMAKE_CXX_FLAGS "-std=c++17 -g -Wall -Wextra -pedantic -D_DEBUG")
-#    include_directories(
-#        D:/libraries/glm;
-#        D:/libraries/glfw-3.2.1.bin.WIN64/include;
-#        D:/libraries/glew-2.1.0/include
-#    )
-#    find_package(GLEW REQUIRED)
-#    find_package(GLFW3 REQUIRED)
-#    target_link_libraries(
-#        yoe
-#        opengl32
-#        glew32
-#        glfw3
-#    )
 endif ()
 
 

@@ -1,2 +1,5 @@
 .directory 
 build/*
+out/*
+.vs/*
+CMakeSettings.json
